@@ -12,39 +12,51 @@ public class Dealership {
         this.name = name;
         this.address = address;
         this.phone = phone;
-        inventory = new ArrayList<Vehicle>();
+        this.inventory = new ArrayList<>();
     }
 
-    public void addVehicle(Vehicle v) {
-        inventory.add(v);
+    public String getName() {
+        return name;
     }
 
-    public boolean removeVehicleById(String id) {
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void addVehicle(Vehicle vehicle) {
+        inventory.add(vehicle);
+    }
+
+    public void removeVehicle(String id) {
         for (int i = 0; i < inventory.size(); i++) {
             if (inventory.get(i).getId().equals(id)) {
                 inventory.remove(i);
-                return true;
+                break;
             }
         }
-        return false;
     }
 
     public ArrayList<Vehicle> getAllVehicles() {
         return inventory;
     }
 
-    public ArrayList<Vehicle> findByMake(String make) {
-        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
+    // Search methods
+    public ArrayList<Vehicle> searchByMakeModel(String make, String model) {
+        ArrayList<Vehicle> results = new ArrayList<>();
         for (Vehicle v : inventory) {
-            if (v.getMake().equalsIgnoreCase(make)) {
+            if (v.getMake().equalsIgnoreCase(make) && v.getModel().equalsIgnoreCase(model)) {
                 results.add(v);
             }
         }
         return results;
     }
 
-    public ArrayList<Vehicle> findByPriceRange(double min, double max) {
-        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
+    public ArrayList<Vehicle> searchByPrice(double min, double max) {
+        ArrayList<Vehicle> results = new ArrayList<>();
         for (Vehicle v : inventory) {
             if (v.getPrice() >= min && v.getPrice() <= max) {
                 results.add(v);
@@ -53,5 +65,43 @@ public class Dealership {
         return results;
     }
 
-    // You can add more search methods similarly (year, type, color, mileage)
+    public ArrayList<Vehicle> searchByYear(int min, int max) {
+        ArrayList<Vehicle> results = new ArrayList<>();
+        for (Vehicle v : inventory) {
+            if (v.getYear() >= min && v.getYear() <= max) {
+                results.add(v);
+            }
+        }
+        return results;
+    }
+
+    public ArrayList<Vehicle> searchByColor(String color) {
+        ArrayList<Vehicle> results = new ArrayList<>();
+        for (Vehicle v : inventory) {
+            if (v.getColor().equalsIgnoreCase(color)) {
+                results.add(v);
+            }
+        }
+        return results;
+    }
+
+    public ArrayList<Vehicle> searchByType(String type) {
+        ArrayList<Vehicle> results = new ArrayList<>();
+        for (Vehicle v : inventory) {
+            if (v.getType().equalsIgnoreCase(type)) {
+                results.add(v);
+            }
+        }
+        return results;
+    }
+
+    public ArrayList<Vehicle> searchByMileage(int min, int max) {
+        ArrayList<Vehicle> results = new ArrayList<>();
+        for (Vehicle v : inventory) {
+            if (v.getMileage() >= min && v.getMileage() <= max) {
+                results.add(v);
+            }
+        }
+        return results;
+    }
 }
