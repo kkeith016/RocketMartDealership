@@ -84,4 +84,17 @@ package com.pluralsight;
         public void setPrice(double price) {
             this.price = price;
         }
+
+        public String toString() {
+            return "Vehicle{" +
+                    "id='" + id + '\'' +
+                    ", year=" + year +
+                    ", make='" + make + '\'' +
+                    ", model='" + model + '\'' +
+                    ", type='" + type + '\'' +
+                    ", color='" + color + '\'' +
+                    ", mileage=" + mileage +
+                    ", price=" + price +
+                    '}';
+        }
     }
